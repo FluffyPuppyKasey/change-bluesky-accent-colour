@@ -22,7 +22,7 @@
 
     [style*="background-color: rgb(0, 0, 0);"] {
         background-color: @background-colour !important;
-        backdrop-filter: blur(@blur) saturate(@saturation) contrast(contrast);
+        backdrop-filter: blur(@blur) saturate(@saturation) contrast(@contrast);
     }
 
     [fill="hsl(211, 99%, 53%)"] {
