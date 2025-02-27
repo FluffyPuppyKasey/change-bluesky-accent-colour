@@ -1,67 +1,83 @@
 /* ==UserStyle==
-@name           Change Bluesky Colours
+@name           Change Accent Colour
 @namespace      github.com/openstyles/stylus
-@version        1.0.0
-@description    Customizable accent and background colours for Bluesky
+@version        1.0.2
+@description    Customisable accent and background colours for Bluesky
 @author         fluffypuppykasey.bsky.social
 @preprocessor   less
-@var color accentColour "Accent Colour" #00000000
-@var color backgroundColour "Background Colour" #00000000
+@var color accentColour "Accent Colour" #000000
+@var color backgroundColour "Background Colour" #000000aa
+@var range blur "Blur" ['em', 2.0, 0.5, 4.0, 0.1]
+@var range saturation "Blured Elements Saturation" ['%', 150, 0, 300, 1.0]
+@var range contrast "Blured Elements Contrast" ['%', 125, 0, 300, 1.0]
 ==/UserStyle== */
 @-moz-document domain("bsky.app") {
-    
-@accent-colour: @accentColour;
-@background-colour: @backgroundColour;
-    
-    [style*="background-color: rgb(0, 0, 0);"]{
-        background-color: @background-colour !important;
-        backdrop-filter: blur(2em) saturate(150%) contrast(125%) brightness(33%);
+
+    @accent-colour: @accentColour;
+    @background-colour: @backgroundColour;
+
+    :root {
+        --rc-focus-color: @accentColour;
     }
-    
-    [fill="#0085ff"] {
+
+    [style*="background-color: rgb(0, 0, 0);"] {
+        background-color: @background-colour !important;
+        backdrop-filter: blur(@blur) saturate(@saturation) contrast(contrast);
+    }
+
+    [fill="hsl(211, 99%, 53%)"] {
         fill: @accent-colour !important;
     }
-    
-    a[href="/notifications"] svg + div,
+
     [aria-label^="Follow "],
     [aria-label="Compose post"],
     [aria-label="Confirm"],
     [aria-label="Publish post"] div,
     [aria-label="Save alt text"] div,
-    [style*="rgb(90, 113, 250), rgb(0, 133, 255));"],
+    [style*="background-color: rgb(90, 113, 250)"],
     [style*="background-color: rgb(0, 133, 255);"],
-    [style*="background-color: rgb(16, 131, 254);"]
-    {
+    [style*="background-color: rgb(16, 131, 254);"] {
         background-color: @accent-colour !important;
         background-image: none !important;
     }
-    
-    [style*="color: rgb(16, 131, 254);"] {
+
+    [style*="color: rgb(16, 131, 254);"],
+    [style*="color: rgb(0, 133, 255);"],
+    [style*="color: rgb(90, 113, 250);"] {
         color: @accent-colour !important;
     }
-    
-    [style*="background-color: rgb(16, 131, 254);"] {
+
+    [style*="border-color: rgb(16, 131, 254);"],
+    [style*="border-color: rgb(46, 63, 81);"] {
+        border-color: @accent-colour !important;
+    }
+
+    [style*="background-color: rgb(1, 84, 173);"] {
+        background-color: darken(@accent-colour, 5%) !important;
+    }
+
+    [style*="background-color: rgb(0, 44, 91);"] {
+        background-color: darken(@accent-colour, 65%)!important;
+    }
+
+    [style*="background-color: rgb(52, 150, 254)"] {
+        background-color: lighten(@accent-colour, 5%) !important;
+    }
+
+    [style*="color: rgb(52, 150, 254)"] {
+        color: lighten(@accent-colour, 5%) !important;
+    }
+
+    [style*="background-color: rgb(1, 64, 132)"] {
+        background-color: darken(@accent-colour, 33%) !important;
+    }
+
+    .r-wzwllv {
         background-color: @accent-colour !important;
     }
     
-    [fill="hsl(211, 99%, 53%);"],[fill="hsl(211, 99%, 53%)"] {
-        fill: @accent-colour !important;
+
+    [aria-label*="unread items"] {
+        color: rgb(241, 243, 245) !important;
     }
-    
-    [style*="background-color: rgb(1, 84, 173);"] {
-        background-color: darken(@accent-colour,5%) !important;
-    }
-    
-    [style*="background-color: rgb(0, 44, 91);"] {
-        background-color: darken(@accent-colour,65%)!important;
-    }
-    
-    [style*="background-color: rgb(52, 150, 254)"] {
-        background-color: lighten(@accent-colour,5%) !important;
-    }
-    
-    [style*="color: rgb(52, 150, 254)"] {
-        color: lighten(@accent-colour,5%) !important;
-    }
-    
 }
